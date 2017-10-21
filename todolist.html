@@ -7,6 +7,9 @@
     <title>Document</title>
     <link rel="stylesheet" href="todolist.css">   
     <script src='https://unpkg.com/vue@2.5.2/dist/vue.js'></script>
+    <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-default/index.css">
+    
+    <script src="https://unpkg.com/element-ui/lib/index.js"></script>
 </head>
 <body>
     <div class='page-top'>
@@ -24,11 +27,10 @@
                     <a href="#finished">完成任务</a>
                 </li>
             </ul>
-            <!-- <h3 class="big-title">任务列表：</h3> -->
             <div class="tasks">
                 <span class="no-task-tip" v-show='!list.length'>还没有添加任何任务</span>
                 <ul class="todo-list">
-                    <li class="tode-list" v-for="item in filterList" v-bind:class={completed:item.checked,editing:item===editingTodo}>
+                    <li   class="tode-list" v-for="(item,index) in filterList" v-bind:class={completed:item.checked,editing:item===editingTodo} >
                         <div class="view">
                             <input type="checkbox" class="toggle" v-model='item.checked'>
                             <label for="" @dblclick='editTodo(item)' >{{ item.title }}</label>
@@ -39,6 +41,15 @@
                         @blur='editedTodo' @keyup.esc='cancelTodo(item)'>
                     </li>
                 </ul>
+                <div class="block">
+                    <el-pagination
+                      layout="prev, pager, next"
+                      size
+                      @size-change="handleSizeChange"
+                      @current-change="handleCurrentChange"
+                      :total="page.total">
+                    </el-pagination>
+                </div>
                 
             </div>
         </div>

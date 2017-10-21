@@ -20,7 +20,11 @@ var vm = new Vue({
         editingTodo:"",
         beforeTodo:"",
         getChecked:num,
-        visibility:'all'
+        visibility:'all',
+        page:{
+            total:'',
+            index:1  //当前第几页
+        }
     },
     watch:{
         list:{
@@ -51,7 +55,11 @@ var vm = new Vue({
                     })
                 }
             }
-            return filter[this.visibility]?filter[this.visibility](this.list):this.list
+            // console.log(filter[this.visibility](this.list).length);
+            this.page.total = filter[this.visibility](this.list).length;
+            // console.log((filter[this.visibility]?filter[this.visibility](this.list):this.list).slice(this.page.index,(this.page.index + 9)))
+            console.log(this.page.index)
+            return (filter[this.visibility]?filter[this.visibility](this.list):this.list).slice((this.page.index - 1) * 10, (this.page.index) * 10)
             
         }
     },
@@ -83,6 +91,13 @@ var vm = new Vue({
         },
         clear:function(){
             
+        },
+        handleSizeChange:function(val){
+            console.log(`每页${val}条`)
+        },
+        handleCurrentChange(val) {
+            console.log(`当前页: ${val}`);
+            this.page.index = val;
         }
         
     },
