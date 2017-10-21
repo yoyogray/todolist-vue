@@ -1,16 +1,3 @@
-// var list = [{
-//     title:"吃饭",
-//     checked:false
-// },{
-//     title:"喝水",
-//     checked:false    
-// },{
-//     title:"早餐",
-//     checked:false
-// },{
-//     title:"厕所",
-//     checked:false
-// }];
 
 var setLocal = {
     save(key,value){
@@ -93,6 +80,9 @@ var vm = new Vue({
         cancelTodo:function(todo){
             todo.title = this.beforeTodo;
             this.beforeTodo = "";
+        },
+        clear:function(){
+            
         }
         
     },

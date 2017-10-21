@@ -34,6 +34,7 @@ ul {
     padding:0;
     margin:0;
     list-style: none;
+    position: relative;
 }
 
 .page-top {
@@ -58,6 +59,9 @@ ul {
     width: 50%;
     margin: 0px auto;
     box-sizing:border-box;
+}
+.main .page-slider{
+    float:right
 }
 
 .task-input {
@@ -202,7 +206,7 @@ ul {
     text-decoration: line-through;
 }
 
-/*.tip-toggle {
+/* .tip-toggle {
     padding-left: 0;
     position: relative;
 }
@@ -213,7 +217,7 @@ ul {
 
 .tip-toggle span {
     margin-left: 45px;
-}*/
+} */
 
 .todo-list li .destroy {
     display: none;
@@ -248,4 +252,8 @@ ul {
 
 .todo-list li.editing:last-child {
     margin-bottom: -1px;
+}
+
+.clear-completed{
+    
 }
