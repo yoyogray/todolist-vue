@@ -55,12 +55,10 @@ var vm = new Vue({
                     })
                 }
             }
-            // console.log(filter[this.visibility](this.list).length);
+            console.log(filter[this.visibility](this.list).length);
             this.page.total = filter[this.visibility](this.list).length;
-            // console.log((filter[this.visibility]?filter[this.visibility](this.list):this.list).slice(this.page.index,(this.page.index + 9)))
             console.log(this.page.index)
             return (filter[this.visibility]?filter[this.visibility](this.list):this.list).slice((this.page.index - 1) * 10, (this.page.index) * 10)
-            
         }
     },
     methods:{
@@ -82,8 +80,10 @@ var vm = new Vue({
             this.editingTodo = todo;
             this.beforeTodo = todo.title;
         },
-        editedTodo:function(){
-            this.editingTodo = ""
+        editedTodo:function(todo){
+            
+            this.editingTodo = "";
+            
         },
         cancelTodo:function(todo){
             todo.title = this.beforeTodo;
@@ -98,8 +98,14 @@ var vm = new Vue({
         handleCurrentChange(val) {
             console.log(`当前页: ${val}`);
             this.page.index = val;
+        },
+        clear:function(){
+            console.log('clear');
+            console.log(this.list);
+            this.list = (this.list).filter(function(item){
+                return !item.checked
+            })
         }
-        
     },
     directives:{
         focus:{
@@ -120,3 +126,6 @@ function changeHash(){
 }
 changeHash()
 window.addEventListener('hashchange',changeHash)
+
+
+
